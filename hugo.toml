@@ -1,0 +1,31 @@
+baseURL = "https://go-synctex.github.io/"
+title = "go-synctex"
+disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[[params.phases]]
+  name = "SyncTeX file parsing"
+  status = "ready"
+  blurb = "Reads `.synctex.gz` (and plain `.synctex`): the `Version` / `Input:tag:path` map, the `Content:` block, `{page` blocks and the node records (`[`, `h`, `v`, `k`, `g`, `x`) with their `N,L:X,Y` anchor prefix, up to `Postamble:`."
+[[params.phases]]
+  name = "Forward search"
+  status = "ready"
+  blurb = "`(source file, line)` → `(page, x, y)`. Records are indexed per source file and binary-searched for the nearest line ≥ the query, so an editor can jump the PDF viewer to where a line was typeset."
+[[params.phases]]
+  name = "Backward search"
+  status = "ready"
+  blurb = "`(page, x, y)` → `(source file, line)`. Picks the record closest to a clicked PDF coordinate, so a viewer can jump back to the source that produced a glyph — the full round-trip."
+[[params.phases]]
+  name = "Hardening & path scoping"
+  status = "ready"
+  blurb = "A 32 MB decompression cap defeats zip-bomb `.synctex.gz` inputs; `WithProjectRoot` drops `Input:` paths outside the project root and rewrites in-root paths relative-to-root so absolute host paths never leak to a client."
+[[params.phases]]
+  name = "Coordinates & coverage"
+  status = "ready"
+  blurb = "Anchors are exposed as raw SyncTeX scaled points (sp; PDF points = sp / 65536) so callers apply their own point/DPI scaling. 100% coverage including every error branch, gofmt + go vet clean, green across all six 64-bit Go arches."
+[[params.phases]]
+  name = "Typed sp/point helpers & box dimensions"
+  status = "planned"
+  blurb = "Possible future surface: a typed scaled-point/PDF-point helper, parsing the trailing `W,H,D` box dimensions (only the anchor is read today), and a streaming parse API for very large jobs."
