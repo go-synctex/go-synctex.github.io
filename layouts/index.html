@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{{/* Dark Reader repaints pages that already draw their own dark theme, as this one does: ask it to stand aside. */}}
+<meta name="darkreader-lock">
 <title>{{ .Site.Title }} — a pure-Go parser for TeX's SyncTeX (source ↔ PDF), no cgo</title>
 <meta name="description" content="go-synctex — a pure-Go (no cgo) parser for TeX's SyncTeX output: forward (source → PDF) and backward (PDF → source) search, zero dependencies.">
 <style>
