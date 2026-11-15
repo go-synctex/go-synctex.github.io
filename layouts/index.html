@@ -41,15 +41,13 @@
   <div class="hero"><div class="wrap">
     <div>
       <h1 class="head">go-synctex</h1>
-      <p class="sub">TeX's SyncTeX (source ↔ PDF) in pure Go — no cgo, zero dependencies.</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="/docs/">{{ partial "icons/book.html" . }}Documentation</a>
-        <a class="btn btn-ghost" href="https://github.com/go-synctex/synctex">{{ partial "icons/github.html" . }}GitHub</a>
-      </div>
-      <div class="trust">{{ if not (partial "mantra-on.html" $) }}<span class="pill">pure Go · zero cgo</span>{{ end }}<span class="pill">stdlib only</span><span class="pill">.synctex.gz</span><span class="pill">forward: source → PDF</span><span class="pill">backward: PDF → source</span><span class="pill">project-root scoping</span><span class="pill">zip-bomb guard</span><span class="pill">scaled-point coords</span><span class="pill">100% coverage</span><span class="pill">6 arches</span></div>
+      <p class="sub">TeX's SyncTeX (source ↔ PDF) in {{ if partial "mantra-on.html" . }}Go{{ else }}pure Go{{ end }} — {{ if not (partial "mantra-on.html" $) }}no cgo{{ end }}, zero dependencies.</p>
+      {{/* [[params.cta]] in hugo.toml: the kit renders the row */}}
+      {{ partial "cta.html" . }}
+      <div class="trust">{{ if not (partial "mantra-on.html" $) }}{{ if not (partial "mantra-on.html" $) }}<span class="pill">pure Go · zero cgo</span>{{ end }}{{ end }}<span class="pill">stdlib only</span><span class="pill">.synctex.gz</span><span class="pill">forward: source → PDF</span><span class="pill">backward: PDF → source</span><span class="pill">project-root scoping</span><span class="pill">zip-bomb guard</span><span class="pill">scaled-point coords</span><span class="pill">100% coverage</span><span class="pill">6 arches</span></div>
       <div class="legacy"><div class="badges">
       <a href="/docs/"><img alt="Documentation (MkDocs Material + mike)" src="https://img.shields.io/badge/docs-mkdocs--material-4F46E5"></a>
-      {{ if not (partial "mantra-on.html" $) }}<a href="https://github.com/go-synctex/synctex/blob/main/LICENSE"><img alt="License: BSD-3-Clause" src="https://img.shields.io/badge/license-BSD--3--Clause-blue"></a>{{ end }}
+      {{ if not (partial "mantra-on.html" $) }}{{ if not (partial "mantra-on.html" $) }}<a href="https://github.com/go-synctex/synctex/blob/main/LICENSE"><img alt="License: BSD-3-Clause" src="https://img.shields.io/badge/license-BSD--3--Clause-blue"></a>{{ end }}{{ end }}
       <a href="https://go.dev/dl/"><img alt="Go 1.26.4+" src="https://img.shields.io/badge/go-1.26.4%2B-00ADD8"></a>
       <a href="https://github.com/go-synctex/synctex"><img alt="Coverage 100%" src="https://img.shields.io/badge/coverage-100%25-1a7f37"></a>
     </div></div>
